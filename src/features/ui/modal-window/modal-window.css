@@ -1,0 +1,36 @@
+.modalWrapper {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #ce5656;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal {
+    position: relative;
+    background-color: #333333;
+    border-radius: 0.6rem;
+    padding: 20px;
+    width: 50rem;
+    height: 50rem;
+    font-size: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.modalClose {
+    cursor: pointer;
+    width: 2rem;
+    height: 2rem;
+    position: absolute;
+    right: 2rem;
+    top: 2rem;
+    background-color: red;
+    border-radius: 50%;
+}
