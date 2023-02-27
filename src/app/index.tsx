@@ -1,11 +1,12 @@
-import TransactionsList from "../pages/ui/transactions-list";
+import { withProviders } from "./providers";
+import {Routing} from "@/pages";
 
 const App = () => {
     return (
         <div className={'app'}>
-            <TransactionsList/>
+            <Routing/>
         </div>
     );
 }
 
-export default App;
+export default withProviders(App);

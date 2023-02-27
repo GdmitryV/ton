@@ -1,4 +1,6 @@
-type TransactionId = {
+import BN from "bn.js";
+
+export type TransactionId = {
     "@type": string;
     "lt": string;
     hash: string;
@@ -40,3 +42,18 @@ export type Transaction = {
 }
 
 export type Transactions = Transaction[];
+
+export type PreparedTransactionData = {
+    amountFormatted: string,
+    feeFormatted: string,
+    lt: string,
+    hash: string,
+    amount: BN,
+    from_address: string,
+    to_address: string,
+    fee: string,
+    storageFee: string,
+    otherFee: string,
+    message: string,
+    date: number
+}

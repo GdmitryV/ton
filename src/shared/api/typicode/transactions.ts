@@ -1,13 +1,13 @@
 import { AxiosPromise } from "axios";
 import {Transactions} from "./models";
-import {axiosInstance} from "./base";
+import {AxiosApi} from "./AxiosApi";
 
 const BASE_URL = '/getTransactions';
 
 export type GetTransactionsParams = {
     address: string;
     limit?: number;
-    lt?: number;
+    lt?: string;
     hash?: string;
     to_lt?: number;
     archival?: boolean;
@@ -21,5 +21,5 @@ export type GetTransactionsAnswer = {
 }
 
 export const getTransactions = (params: GetTransactionsParams):AxiosPromise<GetTransactionsAnswer> => {
-    return axiosInstance.get(BASE_URL, {params});
+    return new AxiosApi().get(BASE_URL, params);
 }

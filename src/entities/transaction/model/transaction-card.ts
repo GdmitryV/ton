@@ -1,9 +1,9 @@
-import {Transaction} from "../../../shared";
+import {PreparedTransactionData, Transaction} from "@/shared";
+import React from "react";
 
 export type TransactionProps = {
-    transaction: Transaction;
-    isLastTransaction: boolean;
-    handleIncreaseLimit: () => void;
+    transaction: PreparedTransactionData;
+    render: (transaction: PreparedTransactionData) => React.ReactNode | React.ReactNode[];
 }
 
 

@@ -1,8 +1,7 @@
 .transactionsList {
-    background-color: #333333;
+    background-color: #131c29;
     padding: 5rem;
     display: flex;
     flex-direction: column;
-    gap: 5px;
     align-items: center;
 }
