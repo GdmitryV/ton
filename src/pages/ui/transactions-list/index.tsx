@@ -15,7 +15,7 @@ const TransactionsList = () => {
 
     useEffect(() => {
         getTransactions({address: import.meta.env.VITE_TRANSACTION_ADDRESS}).then(res => {
-            const transactions = res.data.result;
+            const transactions = res.result;
             setPreparedTransaction(prepareTransactionData(transactions));
             lastTransactionId.current = transactions[transactions.length - 1].transaction_id;
         });
@@ -34,7 +34,7 @@ const TransactionsList = () => {
                         lt: lastTransactionId.current.lt,
                         hash: lastTransactionId.current.hash
                     }).then(res => {
-                        const transactions = res.data.result;
+                        const transactions = res.result;
                         const prepareTransactions = prepareTransactionData(transactions);
                         lastTransactionId.current = transactions[transactions.length - 1].transaction_id;
                         setPreparedTransaction(prev => [...prev, ...prepareTransactions.slice(1, preparedTransaction.length)]);//todo костыль?

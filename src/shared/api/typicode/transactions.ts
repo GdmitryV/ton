@@ -1,4 +1,3 @@
-import { AxiosPromise } from "axios";
 import {Transactions} from "./models";
 import {axiosInstance} from "@/shared/api/typicode/AxiosWrapper";
 
@@ -20,6 +19,6 @@ export type GetTransactionsAnswer = {
     code: number;
 }
 
-export const getTransactions = (params: GetTransactionsParams):AxiosPromise<GetTransactionsAnswer> => {
-    return axiosInstance.get(BASE_URL, params);
+export const getTransactions = (payload: GetTransactionsParams) => {
+    return axiosInstance.get<GetTransactionsParams, GetTransactionsAnswer>(BASE_URL, payload);
 }
