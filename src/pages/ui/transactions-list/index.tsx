@@ -14,14 +14,10 @@ const TransactionsList = () => {
     const transactionsRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        setIsLoading(true);
-
-        //todo repeat
         getTransactions({address: import.meta.env.VITE_TRANSACTION_ADDRESS}).then(res => {
             const transactions = res.data.result;
             setPreparedTransaction(prepareTransactionData(transactions));
             lastTransactionId.current = transactions[transactions.length - 1].transaction_id;
-            setIsLoading(false);
         });
     }, []);
 
@@ -31,8 +27,8 @@ const TransactionsList = () => {
 
         const observer = new IntersectionObserver(([entry]) => {
             if (entry.isIntersecting) {
+                setIsLoading(true);
                 setTimeout(() => {//todo сделать debounce
-                    //todo repeat
                     getTransactions({
                         address: import.meta.env.VITE_TRANSACTION_ADDRESS,
                         lt: lastTransactionId.current.lt,
@@ -41,7 +37,8 @@ const TransactionsList = () => {
                         const transactions = res.data.result;
                         const prepareTransactions = prepareTransactionData(transactions);
                         lastTransactionId.current = transactions[transactions.length - 1].transaction_id;
-                        setPreparedTransaction(prev => [...prev, ...prepareTransactions.slice(1, preparedTransaction.length)])
+                        setPreparedTransaction(prev => [...prev, ...prepareTransactions.slice(1, preparedTransaction.length)]);//todo костыль?
+                        setIsLoading(false);
                     })
                 }, 1000);
                 observer.unobserve(entry.target);
@@ -101,6 +98,7 @@ const TransactionsList = () => {
                     render={(transaction) => transactionCardRender(transaction)}
                     transaction={transaction}/>)
                 }
+                {/*{isLoading && <p style={{fontSize: '4rem'}}>Loading.....</p>}*/}
             </div>
         </>
     );

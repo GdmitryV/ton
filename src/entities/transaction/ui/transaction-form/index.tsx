@@ -1,19 +1,18 @@
 import React, {FC, SetStateAction} from 'react';
 import Textarea from "@/shared/ui/textarea";
 import './transaction-form.css';
-import {handlerLocalStorage} from "@/shared";
 
 type Props = {
     value: string;
     setValue: (value: SetStateAction<string>) => void;
-    key: string;
+    handleSaveClick: () => void;
 }
 
-const TransactionForm:FC<Props> = ({value, setValue, key}) => {
+const TransactionForm:FC<Props> = ({value, setValue, handleSaveClick }) => {
     return (
         <div className={'transactionForm'}>
             <Textarea value={value} onChange={(e) => setValue(e.target.value)}/>
-            <button onClick={() => handlerLocalStorage(key, value)}>ok</button>
+            <button onClick={handleSaveClick}>save</button>
         </div>
     );
 };
